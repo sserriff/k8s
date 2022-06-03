@@ -44,6 +44,9 @@ systemctl enable containerd
 ```
 
 # 6. Disable SWAP
+```bash
+swapoff -a
+```
 
 # 7. Install needed packages
 ```bash
@@ -58,7 +61,7 @@ deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 ```
 ```bash
-apt-update
+apt-get update
 ```
 
 # 9. Install K8S packages
