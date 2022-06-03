@@ -74,7 +74,25 @@ Disable automatic update of such packages:
 apt-mark hold kubelet kubeadm kubectl
 ```
 
-# 10. Initialize Cluster via kubeadm
+# 10. Initialize Cluster via kubeadm (on master only)
 ```bash
 kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.23.0
+```
+# 11. Implement Container
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+# 12. on master only
+```bash
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+optional:
+```bash
+watch -n 1 kubectl get nodes
+```
+# 13. join workers (on workers only)
+```bash
+kubeadm join 172.31.110.125:6443 --token 1taqcj.0m76cview1jcjz5j \
+        --discovery-token-ca-cert-hash sha256:4d053a4337d0cdd65db71790ef4d1a7108fc9cb299e6e5db884125bcecd1db27
 ```
