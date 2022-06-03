@@ -50,7 +50,7 @@ swapoff -a
 
 # 7. Install needed packages
 ```bash
-apt-install apt-transport-https curl
+apt-get install apt-transport-https curl -y
 ```
 
 # 8. K8S Repos
@@ -66,7 +66,7 @@ apt-get update
 
 # 9. Install K8S packages
 ```bash
-apt-get install kubelet=1.23.0-00 kubeadm=1.23.0-00 kubectl=1.23.0-00
+apt-get install kubelet=1.23.0-00 kubeadm=1.23.0-00 kubectl=1.23.0-00 -y
 ```
 
 Disable automatic update of such packages:
