@@ -1,18 +1,18 @@
 # Examples
 
-## 1. run deplyment (with 3 replicas)
+## 1. run deployment (with 3 replicas)
 ```bash
 kubectl create deployment mycv --image=fsabol/mycv:final  --replicas=3
 ```
 
 ### 1.1 store command above to yaml file without running it
 ```bash
-kubectl create deployment mycv --image=fsabol/mycv:final  --replicas=3 -o yaml --dry-run=client > deplyment.yaml
+kubectl create deployment mycv --image=fsabol/mycv:final  --replicas=3 -o yaml --dry-run=client > deployment.yaml
 ```
 
-### 1.2 create deplyment using configuration yaml file
+### 1.2 create deployment using configuration yaml file
 ```bash
-kubectl create -f deplyment.yaml
+kubectl create -f deployment.yaml
 ```
 
 ## 2. expose NodePort 80
