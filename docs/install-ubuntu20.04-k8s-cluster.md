@@ -30,8 +30,7 @@ sysctl --system
 
 # 4. Install Container runtime
 ```bash
-apt-get update 
-apt-get install -y containerd   
+apt-get update && apt-get install -y containerd   
 ```
 
 # 5. Containerd config
