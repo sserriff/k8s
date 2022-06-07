@@ -45,6 +45,8 @@ systemctl enable containerd
 # 6. Disable SWAP
 ```bash
 swapoff -a
+
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
 # 7. Install needed packages
