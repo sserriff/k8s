@@ -76,7 +76,7 @@ apt-mark hold kubelet kubeadm kubectl
 ```bash
 kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.23.0
 ```
-# 11. Implement Container
+# 11. Implement Container (on master only)
 ```bash
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
