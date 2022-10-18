@@ -65,7 +65,7 @@ EOF
 
 # 9. Install K8S packages
 ```bash
-apt-get update && apt-get install kubelet=1.23.0-00 kubeadm=1.23.0-00 kubectl=1.23.0-00 -y
+apt-get update && apt-get install kubelet=1.25.0-00 kubeadm=1.25.0-00 kubectl=1.25.0-00 -y
 ```
 
 ## 9.1 Disable automatic update of such packages:
@@ -75,7 +75,7 @@ apt-mark hold kubelet kubeadm kubectl
 
 # 10. Initialize Cluster via kubeadm (on master only)
 ```bash
-kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.23.0
+kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.25.0
 ```
 
 ## 10.1 Configure cluster (on master only)
