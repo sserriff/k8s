@@ -2,7 +2,7 @@
 # This Script is used for automated installation of K8S stuff on Ubuntu.
 
 # Variables
-ver=1.23.0-00
+ver=1.25.0-00
 
 ## Disable SWAP
 swapoff -a
