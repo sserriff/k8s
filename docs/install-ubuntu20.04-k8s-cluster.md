@@ -77,6 +77,22 @@ apt-mark hold kubelet kubeadm kubectl
 ```bash
 kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.25.0
 ```
+* if error
+* try workaround from : https://github.com/kubernetes/kubeadm/issues/2699
+```
+#### NOT TESTED YET !!! ####
+#If '--skip-phases=addon/kube-proxy' is used, it does let the install complete. Give it like 40 seconds and then run
+
+kubeadm init phase addon kube-proxy \
+  --control-plane-endpoint="<ha-controlplane-loadbalancer>:6443" \
+  --pod-network-cidr="<put your cidr here>"
+
+# It worked for me in Ubuntu 22.04 Server
+
+# Additionally I also had to clean up the Flannel CNI config files 
+/etc/cni/net.d/*flannel* 
+# to clear previous configurations. And also clear old iptables rules.
+```
 
 ## 10.1 Configure cluster (on master only)
 ```bash
