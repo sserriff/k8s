@@ -74,27 +74,29 @@ apt-mark hold kubelet kubeadm kubectl
 ```
 
 # 10. Initialize Cluster via kubeadm (on master only)
+
+## 10.1 change containerd config  -  IMPORTANT
+* edit config.toml
+```bash
+sudo vi /etc/containerd/config.toml
+```
+* change SystemdCgroup from false to true:
+```toml
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+            SystemdCgroup = true
+```
+* restart service
+```bash
+# restart service
+sudo systemctl restart containerd.service
+```
+
+## 10.2 run init command
 ```bash
 kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.25.0
 ```
-* if error
-* try workaround from : https://github.com/kubernetes/kubeadm/issues/2699
-```
-#### NOT TESTED YET !!! ####
-#If '--skip-phases=addon/kube-proxy' is used, it does let the install complete. Give it like 40 seconds and then run
 
-kubeadm init phase addon kube-proxy \
-  --control-plane-endpoint="<ha-controlplane-loadbalancer>:6443" \
-  --pod-network-cidr="<put your cidr here>"
-
-# It worked for me in Ubuntu 22.04 Server
-
-# Additionally I also had to clean up the Flannel CNI config files 
-/etc/cni/net.d/*flannel* 
-# to clear previous configurations. And also clear old iptables rules.
-```
-
-## 10.1 Configure cluster (on master only)
+## 10.3 Configure cluster (on master only)
 ```bash
   mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
